@@ -4,15 +4,29 @@ include '../../../../inc/includes.php';
 
 $report = new PluginReportsAutoReport(__('Custom Asset Report', 'reports'));
 
-// Fetch item types
-$item_types = PluginReportsDropdown::getAllItemTypes(); // Assuming this method exists and returns [classname => translated_name]
+// Fetch item types using $CFG_GLPI
+global $CFG_GLPI; // Ensure $CFG_GLPI is accessible
 
-// Create dropdown criteria for asset types
-$item_type_criteria = new PluginReportsDropdownCriteria([
-    'name'        => 'item_types',
-    'label'       => __('Asset Types', 'reports'),
-    'item_types'  => $item_types, // Expects [key => value] for dropdown options
-    'multiple'    => true,
+$asset_type_options = [];
+if (isset($CFG_GLPI['asset_types']) && is_array($CFG_GLPI['asset_types'])) {
+    foreach ($CFG_GLPI['asset_types'] as $asset_class_name) {
+        if (class_exists($asset_class_name) && method_exists($asset_class_name, 'getTypeName')) {
+            // Prefer the static getTypeName method if available
+            $translated_name = forward_static_call([$asset_class_name, 'getTypeName'], 1);
+        } else {
+            // Fallback to basic translation of the class name (stripping GLPI namespace if present)
+            $short_name = str_replace('Glpi\\Inventory\\', '', $asset_class_name);
+            $translated_name = __(strtolower($short_name));
+        }
+        $asset_type_options[$asset_class_name] = $translated_name;
+    }
+}
+
+// Create multiple string criteria for asset type selection
+$item_type_criteria = new PluginReportsMultipleStringCriteria([
+    'name'   => 'asset_types_selection', // Changed name
+    'label'  => __('Asset Types', 'reports'),
+    'values' => $asset_type_options, // Use the new options array
 ]);
 
 $report->addCriteria($item_type_criteria);
@@ -39,21 +53,28 @@ $report->displayCriteriasForm();
 
 if ($report->criteriasValidated()) {
     // Retrieve selected asset types
-    $selected_item_types = $report->criterias['item_types']; // Assuming 'item_types' is the name used in addCriteria
+    $selected_item_types = $report->criterias['asset_types_selection']; // Updated to use new criteria name
     
     // Retrieve selected fields
-    $selected_fields = $report->criterias['fields_selection']; // Assuming 'fields_selection' is the name used in addCriteria
+    $selected_fields = $report->criterias['fields_selection'];
 
     // Initialize variables
     $table_name = '';
     $query = '';
+    $report_columns = []; // Initialize report columns array
 
     // Handle selected asset type (currently processing only the first one)
     if (!empty($selected_item_types)) {
-        $item_type = $selected_item_types[0]; // TODO: Implement handling for multiple selected item types
-        // Assuming getItemTypeForTable() exists and can convert item type string to table name.
-        // Common GLPI functions include `getTableForItemType` or similar.
-        $table_name = getTableForItemType($item_type); 
+        $item_type_class_name = $selected_item_types[0]; // This is now a class name, e.g., 'Computer'
+        // TODO: Implement handling for multiple selected item types
+        
+        // Use standard GLPI method to get table name
+        if (class_exists($item_type_class_name)) {
+            $table_name = CommonDBTM::getTable($item_type_class_name);
+        } else {
+            echo "<p>Error: Invalid asset type class: " . Html::clean($item_type_class_name) . "</p>";
+            $table_name = ''; // Ensure table_name is empty if class is invalid
+        }
     }
 
     // Construct SQL query if table name and fields are available
@@ -63,15 +84,14 @@ if ($report->criteriasValidated()) {
         $query = $select_clause . ' ' . $from_clause;
 
         // Dynamically Define Report Columns
-        // $predefined_fields is available from the outer scope where it's defined for criteria
         foreach ($selected_fields as $field_machine_name) {
             $display_name = isset($predefined_fields[$field_machine_name]) 
                             ? $predefined_fields[$field_machine_name] 
-                            : ucfirst(str_replace('_', ' ', $field_machine_name)); // Fallback display name
+                            : ucfirst(str_replace('_', ' ', $field_machine_name));
             $report_columns[] = new PluginReportsColumn([
                 'name'         => $field_machine_name,
                 'display_name' => $display_name,
-                'sorton'       => $field_machine_name, // Added for sorting
+                'sorton'       => $field_machine_name,
             ]);
         }
 
@@ -79,49 +99,46 @@ if ($report->criteriasValidated()) {
             $report->setColumns($report_columns);
         }
         
-        // Determine default sort column and add ORDER BY clause
-        if (!empty($selected_fields)) { // Ensure fields are selected before trying to sort
+        if (!empty($selected_fields)) {
             $default_sort_column_name = '';
             if (in_array('name', $selected_fields)) {
                 $default_sort_column_name = 'name';
             } else {
-                // Fallback to the first selected field if 'name' is not present
                 $default_sort_column_name = $selected_fields[0];
             }
             
-            // $report->getOrderBy() should handle the actual sort field and direction from request
-            // or use the provided default.
             $order_by_clause = $report->getOrderBy($default_sort_column_name);
             if (!empty($order_by_clause)) {
-                $query .= " " . $order_by_clause; // Append to existing query
+                $query .= " " . $order_by_clause;
             }
         }
 
-    } // End of query and column construction
+    }
 
-    // Set SQL Request and Execute if query and columns are ready
     if (!empty($query) && !empty($report_columns)) {
         $report->setSqlRequest($query);
-        $report->execute(); // This should handle display and footer if successful
+        $report->execute();
     } else {
-        // Error messages or handling if query/columns are not set
-        if (empty($table_name) && !empty($selected_item_types) && empty($query)) { // Check empty query to avoid duplicate error
+        if (empty($selected_item_types)) {
+             echo "<p>" . __("No asset type selected.", "reports") . "</p>";
+        } else if (empty($table_name) && !empty($selected_item_types) && empty($query) && class_exists($selected_item_types[0])) {
+            // This condition might already be handled if class_exists check for $item_type_class_name fails earlier
             echo "<p>Error: Could not determine table name for the selected asset type: " . Html::clean($selected_item_types[0]) . "</p>";
         }
-        if (empty($selected_fields) && empty($query)) { // Check empty query
-            echo "<p>Error: No fields selected for the report.</p>";
+        if (empty($selected_fields) && empty($query)) {
+            echo "<p>" . __("No fields selected for the report.", "reports") . "</p>";
         }
-        if (empty($report_columns) && !empty($selected_fields)) { // Only show if fields were selected but columns not made
+        // It's possible $report_columns is empty if $selected_fields was empty. Avoid redundant error.
+        if (empty($report_columns) && !empty($selected_fields) && !empty($table_name)) {
              echo "<p>Error: Could not define report columns based on selected fields.</p>";
         }
-        // If execute() is not called (due to errors or missing query/columns), we need to ensure the footer is.
         Html::footer(); 
     }
 } else {
     Html::footer();
 }
 
-// TEST COVERAGE:
+// TEST COVERAGE: (Kept as is from original, will be addressed in later steps)
 //
 // 1. Criteria Form:
 //    - TODO: Verify Asset Types dropdown is populated correctly from PluginReportsDropdown::getAllItemTypes().
