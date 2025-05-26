@@ -1,0 +1,84 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: GLPI Plugin - GenInventoryNumber\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-10-10 13:31+0000\n"
+"PO-Revision-Date: 2015-09-18 13:03+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Danish (Denmark) (http://www.transifex.com/teclib/glpi-plugin-geninventorynumber/language/da_DK/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: da_DK\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: inc/config.class.php:117
+msgid "Active"
+msgstr "Aktiv"
+
+#: inc/generation.class.php:129
+msgid "An inventory number have been generated"
+msgstr "Et inventar nummer blev genereret"
+
+#: inc/config.class.php:138
+msgid "Daily"
+msgstr ""
+
+#: inc/config.class.php:79 inc/configfield.class.php:42
+#: inc/configfield.class.php:142
+msgid "GLPI's inventory items configuration"
+msgstr "GLPI's konfiguration af inventar artikler"
+
+#: hook.php:53 inc/profile.class.php:104
+msgid "Generate inventory number"
+msgstr "Generer inventar nummer"
+
+#: inc/configfield.class.php:146
+msgid "Generation templates"
+msgstr "Generator skabelon"
+
+#: templates/config.html.twig inc/config.class.php:125
+msgid "Global index position"
+msgstr "Globalt indeks position"
+
+#: templates/config.html.twig inc/configfield.class.php:150
+msgid "Index auto-reset method"
+msgstr ""
+
+#: inc/configfield.class.php:149
+msgid "Index position"
+msgstr ""
+
+#: front/config.php:36 inc/profile.class.php:158 inc/config.class.php:64
+#: inc/config.class.php:102 setup.php:67
+msgid "Inventory number generation"
+msgstr "Inventar nummer generator"
+
+#: inc/config.class.php:139
+msgid "Monthly"
+msgstr ""
+
+#: inc/config.class.php:137
+msgid "Never"
+msgstr ""
+
+#: hook.php:58
+msgid "Regenerate inventory number (overwrite)"
+msgstr "Regenerer inventar nummer (overskriv)"
+
+#: inc/configfield.class.php:148
+msgid "Use global index"
+msgstr "Brug globalt indeks"
+
+#: inc/config.class.php:140
+msgid "Yearly"
+msgstr ""
+
+#: inc/generation.class.php:119 inc/generation.class.php:154
+msgid "You can't modify inventory number"
+msgstr "Du kan ikke ændre inventar nummeret"

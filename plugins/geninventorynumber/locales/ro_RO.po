@@ -1,0 +1,86 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Doru  DEACONU <dumitrudeaconu@yahoo.com>, 2016
+# Doru  DEACONU <dumitrudeaconu@yahoo.com>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: GLPI Plugin - GenInventoryNumber\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-10-10 13:31+0000\n"
+"PO-Revision-Date: 2015-09-18 13:03+0000\n"
+"Last-Translator: Doru  DEACONU <dumitrudeaconu@yahoo.com>, 2016\n"
+"Language-Team: Romanian (Romania) (http://www.transifex.com/teclib/glpi-plugin-geninventorynumber/language/ro_RO/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ro_RO\n"
+"Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));\n"
+
+#: inc/config.class.php:117
+msgid "Active"
+msgstr "ActiveazaGenerarea"
+
+#: inc/generation.class.php:129
+msgid "An inventory number have been generated"
+msgstr "Numar InventarGenerat"
+
+#: inc/config.class.php:138
+msgid "Daily"
+msgstr ""
+
+#: inc/config.class.php:79 inc/configfield.class.php:42
+#: inc/configfield.class.php:142
+msgid "GLPI's inventory items configuration"
+msgstr "ConfigurarePeTipDevice"
+
+#: hook.php:53 inc/profile.class.php:104
+msgid "Generate inventory number"
+msgstr "GenerareNumarInventar"
+
+#: inc/configfield.class.php:146
+msgid "Generation templates"
+msgstr "GenerareModel"
+
+#: templates/config.html.twig inc/config.class.php:125
+msgid "Global index position"
+msgstr "PositieIndex "
+
+#: templates/config.html.twig inc/configfield.class.php:150
+msgid "Index auto-reset method"
+msgstr ""
+
+#: inc/configfield.class.php:149
+msgid "Index position"
+msgstr ""
+
+#: front/config.php:36 inc/profile.class.php:158 inc/config.class.php:64
+#: inc/config.class.php:102 setup.php:67
+msgid "Inventory number generation"
+msgstr "geninventornumar"
+
+#: inc/config.class.php:139
+msgid "Monthly"
+msgstr ""
+
+#: inc/config.class.php:137
+msgid "Never"
+msgstr ""
+
+#: hook.php:58
+msgid "Regenerate inventory number (overwrite)"
+msgstr "RegenerareNumarInventar"
+
+#: inc/configfield.class.php:148
+msgid "Use global index"
+msgstr "FolosesteGlobalIndex"
+
+#: inc/config.class.php:140
+msgid "Yearly"
+msgstr ""
+
+#: inc/generation.class.php:119 inc/generation.class.php:154
+msgid "You can't modify inventory number"
+msgstr "NumarInventarGeneratInterzis"
