@@ -1,0 +1,181 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Tiago Graça, 2020
+msgid ""
+msgstr ""
+"Project-Id-Version: GLPI Plugin - Genericobject\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-04-19 14:05+0000\n"
+"PO-Revision-Date: 2015-07-23 09:47+0000\n"
+"Last-Translator: Tiago Graça, 2020\n"
+"Language-Team: French (Canada) (http://app.transifex.com/teclib/glpi-project-plugin-genericobject/language/fr_CA/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: fr_CA\n"
+"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
+
+#: inc/profile.class.php:152
+msgid "(No types defined yet)"
+msgstr "(Aucun type déjà défini)"
+
+#: inc/type.class.php:185
+msgid "A type already exists with the same name"
+msgstr "Un type avec le même nom existe déjà"
+
+#: inc/field.class.php:129
+msgid "Add new field"
+msgstr "Ajout d'un nouveau champ"
+
+#: inc/type.class.php:647
+msgid "Behaviour"
+msgstr "Comportement"
+
+#: index.php:71 front/familylist.php:40
+msgid "Empty family"
+msgstr "Famille vide"
+
+#: inc/typefamily.class.php:39 inc/type.class.php:491 inc/type.class.php:632
+msgid "Family of type of objects"
+msgstr "Famille"
+
+#: front/field.form.php:54
+msgid "Field added successfully"
+msgstr "Champ ajouté avec succès"
+
+#: front/field.form.php:44
+msgid "Field(s) deleted successfully"
+msgstr "Champ(s) supprimé(s) avec succès"
+
+#: inc/field.class.php:68
+msgid "Fields associated with the object"
+msgstr "Champs associés à l'objet"
+
+#: inc/profile.class.php:144
+msgid "General"
+msgstr "Général"
+
+#: inc/type.class.php:737
+msgid "Icon (impact analysis)"
+msgstr ""
+
+#: inc/type.class.php:588
+msgid "Internal identifier"
+msgstr "Identifiant interne"
+
+#: inc/field.class.php:74
+msgid "Label"
+msgstr "Libellé"
+
+#: inc/type.class.php:882
+msgid "Link to other objects"
+msgstr "Liaison avec d'autres objets"
+
+#: inc/field.class.php:75
+msgid "Name in DB"
+msgstr "Nom en base de données"
+
+#: inc/type.class.php:666
+msgid "Network connections"
+msgstr "Connexions réseaux"
+
+#: inc/object.class.php:562
+msgid "Object preview"
+msgstr "Prévisualisation d'un objet de ce type"
+
+#: inc/profile.class.php:150
+msgid "Objects"
+msgstr "Objets"
+
+#: index.php:61 inc/object_item.class.php:112 inc/profile.class.php:42
+#: inc/type.class.php:403 inc/type.class.php:538 front/type.form.php:76
+#: front/familylist.php:36 front/familylist.php:44 setup.php:231
+msgid "Objects management"
+msgstr "Gestion d'objets"
+
+#: inc/type.class.php:1892
+msgid "Other"
+msgid_plural "Others"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#: inc/field.class.php:324
+msgid "Read-only field"
+msgstr "Champ en lecture seule"
+
+#: inc/type.class.php:869
+msgid "Regenerate files"
+msgstr "Regénérer les fichiers"
+
+#: front/commontreedropdown.form.php:39 front/commondropdown.form.php:39
+#: front/commondropdown.php:39
+msgid "The requested dropdown does not exists"
+msgstr "L'intitulé demandé n'existe pas"
+
+#: inc/type.class.php:178
+msgid "Type must start with a letter"
+msgstr "Le type doit commencer par une lettre"
+
+#: inc/type.class.php:159
+msgid "Type name is missing"
+msgstr "Nom du type manquant"
+
+#: inc/type.class.php:165
+msgid "Type name must be longer"
+msgstr "Le nom du type doit être plus long"
+
+#: inc/profile.class.php:290 inc/type.class.php:69 front/object.php:36
+#: front/type.php:41
+msgid "Type of objects"
+msgstr "Types d'objets"
+
+#: inc/type.class.php:171
+msgid ""
+"Types 'field', 'object' and 'type' are reserved. Please choose another one"
+msgstr "Les types 'field', 'object' et 'type' sont réservés. Veuillez en choisir un autre"
+
+#. TRANS:  %1$s is itemtype name
+#: inc/type.class.php:2261
+#, php-format
+msgid "Unable to load the class %1$s."
+msgstr "Impossible de charger la classe %1$s"
+
+#: inc/object.class.php:826
+msgid "You must configure rights to enable the preview"
+msgstr "Vous devez configurer les droits sur cet objet pour voir la prévisualisation"
+
+#. TRANS:  %1$s is itemtype name
+#: inc/type.class.php:2263
+#, php-format
+msgid ""
+"You probably have garbage data in your database for this plugin and missing "
+"files in %1$s"
+msgstr "Vous avez probablement d'anciennes données dans votre base de données pour ce plugin et des fichiers sont manquants dans %1$s"
+
+#: inc/type.class.php:674
+msgid "geninventorynumber plugin"
+msgstr "Plugin génération des numéros d'inventaire"
+
+#: inc/type.class.php:672
+msgid "injection file plugin"
+msgstr "Plugin injection de fichiers"
+
+#: inc/type.class.php:676
+msgid "item's uninstallation plugin"
+msgstr "Plugin de désinstallation des éléments"
+
+#: inc/type.class.php:675
+msgid "order plugin"
+msgstr "Plugin gestion des commandes"
+
+#: inc/type.class.php:677
+msgid "simcard plugin"
+msgstr "Plugin carte SIM"
+
+#: inc/type.class.php:678
+msgid "treeview plugin"
+msgstr "plugin arborescence"
